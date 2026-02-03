@@ -1,0 +1,23 @@
+@use '@/styles/abstract/variables' as *;
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-2 $space-4;
+
+  .copyright {
+    font-size: $font-size-sm;
+  }
+
+  .githubLink {
+    text-decoration: underline;
+    padding: $space-1 $space-2;
+    border-radius: $radius-sm;
+    transition: background-color ease 0.2s;
+
+    &:hover {
+      background-color: $color-overlay;
+    }
+  }
+}
