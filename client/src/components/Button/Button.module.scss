@@ -1,0 +1,31 @@
+@use '@/styles/abstract/variables' as *;
+
+.button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  padding: $space-1 calc($space-1 + 3px);
+  color: $color-text;
+  border-radius: $radius-sm;
+
+  &.primary {
+    background-color: $color-primary;
+    color: $color-background;
+    transition: opacity ease 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.outline {
+    border: 1px solid $color-border;
+    color: $color-primary;
+    transition: background-color ease 0.2s;
+
+    &:hover {
+      background-color: $color-overlay;
+    }
+  }
+}
