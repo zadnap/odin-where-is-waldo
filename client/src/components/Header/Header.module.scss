@@ -1,0 +1,30 @@
+@use '@/styles/abstract/variables' as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-2 $space-4;
+
+  .navigation {
+    ul {
+      display: flex;
+      gap: $space-1;
+
+      a {
+        padding: $space-1 $space-2;
+        border-radius: $radius-sm;
+        transition: background-color ease 0.2s;
+      }
+
+      a:hover {
+        background-color: $color-overlay;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: $space-1;
+  }
+}
