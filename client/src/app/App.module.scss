@@ -1,0 +1,12 @@
+@use '@/styles/abstract/variables' as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .outlet {
+    flex: 1;
+    padding: $space-2 $space-4;
+  }
+}
