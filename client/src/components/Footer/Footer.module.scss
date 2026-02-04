@@ -5,6 +5,9 @@
   justify-content: space-between;
   align-items: center;
   padding: $space-2 $space-4;
+  box-shadow:
+    $color-overlay 0px -2px 5px -1px,
+    $color-overlay 0px -1px 3px -1px;
 
   .copyright {
     font-size: $font-size-sm;
