@@ -1,0 +1,21 @@
+@use '@/styles/abstract/variables' as *;
+
+.leaderboardFilter {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-2;
+
+  .field {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+
+    input,
+    select {
+      border: none;
+      outline: none;
+      border-radius: $radius-sm;
+      padding: $space-1 $space-2;
+    }
+  }
+}
