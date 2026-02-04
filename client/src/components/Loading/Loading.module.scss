@@ -1,0 +1,22 @@
+@use '@/styles/abstract/variables' as *;
+@use '@/styles/animation/keyframes' as *;
+
+.loading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-5;
+
+  .icon {
+    img {
+      width: 100px;
+      animation: floating 2s ease-in-out infinite;
+    }
+  }
+
+  .message {
+    animation: blinking 2s ease-in-out infinite;
+  }
+}
