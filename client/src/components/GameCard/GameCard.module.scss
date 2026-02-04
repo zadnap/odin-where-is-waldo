@@ -1,0 +1,56 @@
+@use '@/styles/abstract/variables' as *;
+
+.gameCard {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-overlay;
+  border-bottom-left-radius: $radius-sm;
+  border-bottom-right-radius: $radius-sm;
+
+  .image {
+    overflow: hidden;
+    img {
+      height: 150px;
+      width: 100%;
+      object-fit: cover;
+      transition: transform ease 0.2s;
+      border-top-left-radius: $radius-sm;
+      border-top-right-radius: $radius-sm;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-2;
+    padding: $space-2 $space-3;
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.7;
+    }
+
+    .link {
+      padding: $space-1 $space-2;
+      border-radius: $radius-sm;
+      background-color: $color-primary;
+      color: $color-background;
+      transition: opacity ease 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.gameCard:has(.link:hover) {
+  .image {
+    img {
+      transform: scale(1.1);
+    }
+  }
+}
