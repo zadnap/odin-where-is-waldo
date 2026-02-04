@@ -7,6 +7,7 @@
   padding: $space-2 $space-4;
   position: sticky;
   top: 0;
+  z-index: 1;
   background-color: $color-background;
   box-shadow:
     $color-overlay 0px 2px 5px -1px,

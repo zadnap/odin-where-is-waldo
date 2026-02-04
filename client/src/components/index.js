@@ -6,6 +6,7 @@ import Loading from './Loading/Loading';
 import Table from './Table/Table';
 import LeaderboardFilter from './LeaderboardFilter/LeaderboardFilter';
 import Pagination from './Pagination/Pagination';
+import CharacterCard from './CharacterCard/CharacterCard';
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   Table,
   LeaderboardFilter,
   Pagination,
+  CharacterCard,
 };

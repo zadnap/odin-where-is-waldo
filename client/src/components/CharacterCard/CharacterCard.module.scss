@@ -1,0 +1,27 @@
+@use '@/styles/abstract/variables' as *;
+
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  .image {
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: $radius-sm;
+  }
+
+  .name {
+    font-size: $font-size-sm;
+    align-self: center;
+  }
+
+  &.found {
+    opacity: 0.5;
+
+    .name {
+      text-decoration: line-through;
+    }
+  }
+}
