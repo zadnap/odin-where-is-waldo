@@ -1,0 +1,24 @@
+@use '@/styles/abstract/variables' as *;
+@use '@/styles/animation/keyframes' as *;
+
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .icon {
+    width: 300px;
+    animation: floating 2s ease-in-out infinite;
+  }
+
+  .message {
+    color: $color-warning;
+  }
+
+  .homepageLink {
+    text-decoration: underline;
+  }
+}
