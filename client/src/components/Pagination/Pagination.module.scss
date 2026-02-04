@@ -1,0 +1,12 @@
+@use '@/styles/abstract/variables' as *;
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .actions {
+    display: flex;
+    gap: $space-1;
+  }
+}
