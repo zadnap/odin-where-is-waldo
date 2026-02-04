@@ -40,4 +40,10 @@
   th[scope='row'] {
     padding: $space-2 $space-4;
   }
+
+  .empty {
+    text-align: center;
+    padding: $space-3;
+    opacity: 0.6;
+  }
 }

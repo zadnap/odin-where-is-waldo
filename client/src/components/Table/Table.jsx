@@ -12,14 +12,22 @@ const Table = ({ rows = [] }) => {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {rows.map((row) => (
-          <tr key={row.id}>
-            <th scope="row">1</th>
-            <td>Bill Cipher</td>
-            <td>Gravity Falls</td>
-            <td>01:32</td>
+        {rows.length === 0 ? (
+          <tr>
+            <td colSpan="4" className={styles.empty}>
+              No results found
+            </td>
           </tr>
-        ))}
+        ) : (
+          rows.map((row) => (
+            <tr key={row.id}>
+              <th scope="row">1</th>
+              <td>Bill Cipher</td>
+              <td>Gravity Falls</td>
+              <td>01:32</td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );
