@@ -1,0 +1,29 @@
+@use '@/styles/abstract/variables' as *;
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+
+  .pageSection {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    .logo {
+      align-self: center;
+      width: 200px;
+    }
+
+    .title {
+      display: flex;
+      font-size: $font-size-lg;
+    }
+
+    .mapList {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: $space-3;
+    }
+  }
+}
