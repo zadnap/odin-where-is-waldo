@@ -1,0 +1,19 @@
+@use '@/styles/abstract/variables' as *;
+
+.leaderboardPage {
+  .pageSection {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    .title {
+      font-size: $font-size-lg;
+    }
+
+    .leaderboard {
+      display: flex;
+      flex-direction: column;
+      gap: $space-2;
+    }
+  }
+}
