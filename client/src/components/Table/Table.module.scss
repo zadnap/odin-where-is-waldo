@@ -1,0 +1,43 @@
+@use '@/styles/abstract/variables' as *;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+  border-radius: $radius-sm;
+  overflow: hidden;
+  font-size: $font-size-sm;
+
+  .thead {
+    background-color: rgba(250, 204, 21, 0.15);
+  }
+
+  th {
+    padding: $space-2 $space-4;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fde68a;
+  }
+
+  .tbody tr {
+    transition:
+      background-color 0.2s ease,
+      transform 0.15s ease;
+  }
+
+  .tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .tbody tr:hover {
+    background-color: rgba(250, 204, 21, 0.08);
+  }
+
+  td,
+  th[scope='row'] {
+    padding: $space-2 $space-4;
+  }
+}
