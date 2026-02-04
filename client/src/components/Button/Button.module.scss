@@ -28,4 +28,13 @@
       background-color: $color-overlay;
     }
   }
+
+  &:disabled {
+    cursor: auto;
+    opacity: 0.4;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
