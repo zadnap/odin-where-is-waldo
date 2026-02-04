@@ -1,0 +1,51 @@
+@use '@/styles/abstract/variables' as *;
+
+.targetBox {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  position: absolute;
+  transform: translate(-12%, -50%);
+
+  .selectArea {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 2px dashed white;
+    background-color: rgba(0, 0, 0, 0.575);
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    background-color: $color-background;
+    padding: $space-1;
+    border-radius: $radius-sm;
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 0 $space-2 0 0;
+      background-color: $color-background;
+      border: none;
+      color: $color-text;
+      cursor: pointer;
+      transition: background-color ease 0.2s;
+
+      img {
+        border-radius: $radius-sm;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+      }
+
+      &:hover {
+        opacity: 1;
+        background: $color-overlay;
+      }
+    }
+  }
+}

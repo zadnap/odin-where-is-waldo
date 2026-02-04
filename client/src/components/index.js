@@ -7,6 +7,7 @@ import Table from './Table/Table';
 import LeaderboardFilter from './LeaderboardFilter/LeaderboardFilter';
 import Pagination from './Pagination/Pagination';
 import CharacterCard from './CharacterCard/CharacterCard';
+import TargetBox from './TargetBox/TargetBox';
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   LeaderboardFilter,
   Pagination,
   CharacterCard,
+  TargetBox,
 };
