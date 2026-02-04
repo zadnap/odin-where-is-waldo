@@ -1,0 +1,11 @@
+@use '@/styles/abstract/variables' as *;
+
+.gameMapContainer {
+  position: relative;
+
+  .gameMap {
+    cursor: crosshair;
+    width: 100%;
+    border-radius: $radius-sm;
+  }
+}

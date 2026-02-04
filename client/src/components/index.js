@@ -8,6 +8,7 @@ import LeaderboardFilter from './LeaderboardFilter/LeaderboardFilter';
 import Pagination from './Pagination/Pagination';
 import CharacterCard from './CharacterCard/CharacterCard';
 import TargetBox from './TargetBox/TargetBox';
+import GameMap from './GameMap/GameMap';
 
 export {
   Button,
@@ -20,4 +21,5 @@ export {
   Pagination,
   CharacterCard,
   TargetBox,
+  GameMap,
 };
