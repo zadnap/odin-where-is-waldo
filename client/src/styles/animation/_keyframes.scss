@@ -19,3 +19,25 @@
     opacity: 0.3;
   }
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-40px);
+    opacity: 0.6;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.6;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

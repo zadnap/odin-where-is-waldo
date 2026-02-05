@@ -9,6 +9,7 @@ import Pagination from './Pagination/Pagination';
 import CharacterCard from './CharacterCard/CharacterCard';
 import TargetBox from './TargetBox/TargetBox';
 import GameMap from './GameMap/GameMap';
+import EnterNameModal from './EnterNameModal/EnterNameModal';
 
 export {
   Button,
@@ -22,4 +23,5 @@ export {
   CharacterCard,
   TargetBox,
   GameMap,
+  EnterNameModal,
 };
