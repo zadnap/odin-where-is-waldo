@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -11,4 +5,61 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model Map {
+  id        String   @id @default(uuid()) @map("id")
+  title     String   @map("title") @db.VarChar(255)
+  slug      String   @unique @map("slug")
+  imageUrl  String   @map("image_url")
+  width     Int      @map("width")
+  height    Int      @map("height")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  characters Character[]
+  games      Game[]
+
+  @@map("maps")
+}
+
+model Character {
+  id       String  @id @default(uuid()) @map("id")
+  name     String  @map("name") @db.VarChar(255)
+  imageUrl String  @map("image_url")
+  xMin     Decimal @map("x_min") @db.Decimal(5, 4)
+  xMax     Decimal @map("x_max") @db.Decimal(5, 4)
+  yMin     Decimal @map("y_min") @db.Decimal(5, 4)
+  yMax     Decimal @map("y_max") @db.Decimal(5, 4)
+
+  mapId String @map("map_id")
+  map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
+
+  @@unique([mapId, name])
+  @@map("characters")
+}
+
+model Game {
+  id         String    @id @default(uuid()) @map("id")
+  startedAt  DateTime  @default(now()) @map("started_at")
+  finishedAt DateTime? @map("finished_at")
+
+  mapId String @map("map_id")
+  map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
+
+  score Score?
+
+  @@map("games")
+}
+
+model Score {
+  id         String   @id @default(uuid()) @map("id")
+  playerName String   @map("player_name") @db.VarChar(255)
+  timeMs     Int      @map("time_ms")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  gameId String @unique
+  game   Game   @relation(fields: [gameId], references: [id], onDelete: Cascade)
+
+  @@index([timeMs])
+  @@map("scores")
 }
