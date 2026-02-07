@@ -3,9 +3,9 @@ import { useState } from 'react';
 import styles from './LeaderboardPage.module.scss';
 
 const LeaderboardPage = () => {
+  const options = [];
   const [currentPage, setCurrentPage] = useState(1);
-  const [playerFilter, setPlayerFilter] = useState('');
-  const [mapFilter, setMapFilter] = useState('all');
+  const [selectedOpt, setSelectedOpt] = useState('all');
 
   return (
     <main className={styles.leaderboardPage}>
@@ -18,10 +18,9 @@ const LeaderboardPage = () => {
         </h2>
         <div className={styles.leaderboard}>
           <LeaderboardFilter
-            playerFilter={playerFilter}
-            mapFilter={mapFilter}
-            setPlayerFilter={setPlayerFilter}
-            setMapFilter={setMapFilter}
+            options={options}
+            selectedOpt={selectedOpt}
+            setSelectedOpt={setSelectedOpt}
           />
           <Table />
           <Pagination
