@@ -2,14 +2,24 @@ import { prisma } from '../lib/prisma.js';
 import AppError from '../utils/AppError.js';
 import { getPagination } from '../utils/pagination.js';
 
-const getScores = async ({ mapId, page, limit }) => {
+const getScores = async ({ mapSlug, page, limit }) => {
   const pagination = getPagination(page, limit);
 
-  if (!mapId) {
-    throw new AppError('MapId is required', 400);
+  const where = {};
+
+  if (mapSlug) {
+    const map = await prisma.map.findUnique({
+      where: { slug: mapSlug },
+      select: { id: true },
+    });
+
+    if (!map) {
+      throw new AppError('Map not found', 404);
+    }
+
+    where.game = { mapId: map.id };
   }
 
-  const where = { game: { mapId } };
   const [scores, total] = await Promise.all([
     prisma.score.findMany({
       take: pagination.limit,
