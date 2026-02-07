@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 
 const useMaps = () => {
   const [maps, setMaps] = useState([]);
-  const [mapsLoading, setMapsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const loadMaps = async () => {
       try {
-        setMapsLoading(true);
+        setLoading(true);
         setError(null);
 
         const data = await getAllMapsApi();
@@ -18,14 +18,14 @@ const useMaps = () => {
       } catch (err) {
         setError(err);
       } finally {
-        setMapsLoading(false);
+        setLoading(false);
       }
     };
 
     loadMaps();
   }, []);
 
-  return { maps, mapsLoading, error };
+  return { maps, mapsLoading: loading, mapsError: error };
 };
 
 export { useMaps };

@@ -4,7 +4,7 @@ import logo from '@/assets/images/logo.png';
 import { useMaps } from '@/hook/useMaps';
 
 const HomePage = () => {
-  const { maps, mapsLoading, error } = useMaps();
+  const { maps, mapsLoading, mapsError } = useMaps();
 
   return (
     <main className={styles.homePage}>
@@ -23,8 +23,8 @@ const HomePage = () => {
       <section className={styles.pageSection}>
         <h2 className={styles.title}>Choose a map</h2>
         {mapsLoading && <Loading message="Loading maps" />}
-        {!mapsLoading && error && <Error message="Fail to load maps" />}
-        {!mapsLoading && !error && (
+        {!mapsLoading && mapsError && <Error message="Fail to load maps" />}
+        {!mapsLoading && !mapsError && (
           <ul className={styles.mapList}>
             {maps.map((map) => (
               <li key={map.id}>
