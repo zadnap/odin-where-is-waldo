@@ -1,9 +1,12 @@
 import { Button } from '@/components';
-import styles from './Pagination.module.scss';
+import styles from './LeaderboardPagination.module.scss';
 
-const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
+const LeaderboardPagination = ({ totalPages, currentPage, setCurrentPage }) => {
   return (
-    <nav aria-label="Leaderboard pages" className={styles.pagination}>
+    <nav
+      aria-label="Leaderboard pages"
+      className={styles.leaderboardPagination}
+    >
       <p className={styles.pages} aria-live="polite">
         Page <span>{currentPage}</span> of <span>{totalPages}</span>
       </p>
@@ -31,4 +34,4 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
   );
 };
 
-export default Pagination;
+export default LeaderboardPagination;

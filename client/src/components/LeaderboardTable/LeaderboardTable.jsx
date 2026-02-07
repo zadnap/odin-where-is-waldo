@@ -1,8 +1,8 @@
-import styles from './Table.module.scss';
+import styles from './LeaderboardTable.module.scss';
 
-const Table = ({ rows = [] }) => {
+const LeaderboardTable = ({ rows = [] }) => {
   return (
-    <table className={styles.table}>
+    <table className={styles.leaderboardTable}>
       <thead className={styles.thead}>
         <tr>
           <th scope="col">Rank</th>
@@ -21,10 +21,10 @@ const Table = ({ rows = [] }) => {
         ) : (
           rows.map((row) => (
             <tr key={row.id}>
-              <th scope="row">1</th>
-              <td>Bill Cipher</td>
-              <td>Gravity Falls</td>
-              <td>01:32</td>
+              <th scope="row">{rows.rank}</th>
+              <td>{rows.playerName}</td>
+              <td>{rows.mapName}</td>
+              <td>{rows.timeMs}</td>
             </tr>
           ))
         )}
@@ -33,4 +33,4 @@ const Table = ({ rows = [] }) => {
   );
 };
 
-export default Table;
+export default LeaderboardTable;

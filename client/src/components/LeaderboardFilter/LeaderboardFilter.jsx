@@ -9,9 +9,10 @@ const LeaderboardFilter = ({ options, selectedOpt, setSelectedOpt }) => {
           value={selectedOpt}
           onChange={(e) => setSelectedOpt(e.target.value)}
         >
+          <option value="">All</option>
           {options.map((opt) => (
             <option key={opt.slug} value={opt.slug}>
-              {opt.name}
+              {opt.title}
             </option>
           ))}
         </select>

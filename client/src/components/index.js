@@ -3,9 +3,9 @@ import Footer from './Footer/Footer';
 import Button from './Button/Button';
 import GameCard from './GameCard/GameCard';
 import Loading from './Loading/Loading';
-import Table from './Table/Table';
+import LeaderboardTable from './LeaderboardTable/LeaderboardTable';
 import LeaderboardFilter from './LeaderboardFilter/LeaderboardFilter';
-import Pagination from './Pagination/Pagination';
+import LeaderboardPagination from './LeaderboadPagination/LeaderboardPagination';
 import CharacterCard from './CharacterCard/CharacterCard';
 import TargetBox from './TargetBox/TargetBox';
 import GameMap from './GameMap/GameMap';
@@ -18,9 +18,9 @@ export {
   GameCard,
   Footer,
   Loading,
-  Table,
+  LeaderboardTable,
   LeaderboardFilter,
-  Pagination,
+  LeaderboardPagination,
   CharacterCard,
   TargetBox,
   GameMap,
