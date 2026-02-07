@@ -10,6 +10,7 @@ import CharacterCard from './CharacterCard/CharacterCard';
 import TargetBox from './TargetBox/TargetBox';
 import GameMap from './GameMap/GameMap';
 import EnterNameModal from './EnterNameModal/EnterNameModal';
+import Error from './Error/Error';
 
 export {
   Button,
@@ -24,4 +25,5 @@ export {
   TargetBox,
   GameMap,
   EnterNameModal,
+  Error,
 };
