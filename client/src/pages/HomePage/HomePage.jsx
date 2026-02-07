@@ -6,14 +6,15 @@ const HomePage = () => {
   return (
     <main className={styles.homePage}>
       <section className={styles.pageSection}>
-        <img src={logo} alt="Hidden Nostalgia's logo" className={styles.logo} />
-        <h2 className={styles.title}>Hidden Nostalgia</h2>
+        <img src={logo} alt="Where's Waldo's logo" className={styles.logo} />
+        <h2 className={styles.title}>Where's Waldo</h2>
         <p>
-          Hidden Nostalgia is a “Where's Waldo?” inspired game that brings back
-          the magic of classic Cartoon Network shows. Dive into colorful,
-          crowded scenes from your childhood and challenge yourself to spot
-          familiar characters hidden in plain sight. Choose a map, test your
-          observation skills, and relive the nostalgia—one character at a time.
+          This is a “Where's Waldo?” - inspired game that challenges your
+          observation and attention to detail. Explore large, detailed scenes
+          filled with dozens of characters and objects, and search carefully to
+          find specific targets hidden within the crowd. Select a map, race
+          against the clock, and see how quickly you can spot everything. Simple
+          to play, but tricky to master.
         </p>
       </section>
       <section className={styles.pageSection}>
