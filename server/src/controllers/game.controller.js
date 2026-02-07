@@ -1,5 +1,5 @@
-import gameService from '../services/game.service';
-import { successResponse } from '../utils/response';
+import gameService from '../services/game.service.js';
+import { successResponse } from '../utils/response.js';
 
 const createGame = async (req, res) => {
   const mapId = req.body.mapId;
