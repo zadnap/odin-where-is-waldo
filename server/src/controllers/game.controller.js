@@ -1,13 +1,6 @@
 import gameService from '../services/game.service.js';
 import { successResponse } from '../utils/response.js';
 
-const getGame = async (req, res) => {
-  const gameId = req.params.gameId;
-  const game = await gameService.getGame(gameId);
-
-  return successResponse(res, { data: game });
-};
-
 const createGame = async (req, res) => {
   const mapSlug = req.params.mapSlug;
   const newGame = await gameService.createGame(mapSlug);
@@ -34,4 +27,4 @@ const makeGuess = async (req, res) => {
   });
 };
 
-export { getGame, createGame, makeGuess };
+export { createGame, makeGuess };
