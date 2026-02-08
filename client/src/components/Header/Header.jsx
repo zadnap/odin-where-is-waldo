@@ -14,7 +14,6 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <p className={styles.timeClock}>Time Elapsed: 3:99s</p>
     </header>
   );
 };

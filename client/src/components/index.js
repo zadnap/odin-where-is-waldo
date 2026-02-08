@@ -12,6 +12,7 @@ import GameMap from './GameMap/GameMap';
 import EnterNameModal from './EnterNameModal/EnterNameModal';
 import Error from './Error/Error';
 import NotiPopup from './NotiPopup/NotiPopup';
+import TimeElapsed from './TimeElapsed/TimeElapsed';
 
 export {
   Button,
@@ -28,4 +29,5 @@ export {
   EnterNameModal,
   Error,
   NotiPopup,
+  TimeElapsed,
 };
