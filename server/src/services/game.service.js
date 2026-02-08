@@ -1,18 +1,63 @@
 import { prisma } from '../lib/prisma.js';
 import AppError from '../utils/AppError.js';
 
-const createGame = async (mapId) => {
-  if (!mapId) {
-    throw new AppError('MapId is required', 400);
+const getGame = async (gameId) => {
+  if (!gameId) {
+    throw new AppError('GameId is required', 400);
   }
 
-  const map = await prisma.map.findUnique({ where: { id: mapId } });
+  const game = await prisma.game.findUnique({
+    where: { id: gameId },
+    include: {
+      foundCharacters: true,
+      map: {
+        include: {
+          characters: {
+            select: {
+              id: true,
+              name: true,
+              imageUrl: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!game) {
+    throw new AppError('Game not found', 404);
+  }
+
+  return game;
+};
+
+const createGame = async (mapSlug) => {
+  if (!mapSlug) {
+    throw new AppError('MapSlug is required', 400);
+  }
+
+  const map = await prisma.map.findUnique({ where: { slug: mapSlug } });
 
   if (!map) {
-    throw new AppError('MapId not found', 404);
+    throw new AppError('Map not found', 404);
   }
 
-  const newGame = await prisma.game.create({ data: { mapId } });
+  const newGame = await prisma.game.create({
+    data: { mapId: map.id },
+    include: {
+      map: {
+        include: {
+          characters: {
+            select: {
+              id: true,
+              name: true,
+              imageUrl: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
   return newGame;
 };
@@ -62,4 +107,4 @@ const makeGuess = async ({ gameId, x, y, characterId }) => {
   );
 };
 
-export default { createGame, makeGuess };
+export default { getGame, createGame, makeGuess };

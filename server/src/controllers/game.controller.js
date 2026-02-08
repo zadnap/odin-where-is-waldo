@@ -1,9 +1,16 @@
 import gameService from '../services/game.service.js';
 import { successResponse } from '../utils/response.js';
 
+const getGame = async (req, res) => {
+  const gameId = req.params.gameId;
+  const game = await gameService.getGame(gameId);
+
+  return successResponse(res, { data: game });
+};
+
 const createGame = async (req, res) => {
-  const mapId = req.body.mapId;
-  const newGame = await gameService.createGame(mapId);
+  const mapSlug = req.params.mapSlug;
+  const newGame = await gameService.createGame(mapSlug);
 
   return successResponse(res, {
     statusCode: 201,
@@ -22,4 +29,4 @@ const makeGuess = async (req, res) => {
   });
 };
 
-export { createGame, makeGuess };
+export { getGame, createGame, makeGuess };
