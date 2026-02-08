@@ -172,10 +172,10 @@ async function main() {
             name: 'Sniffing Dog',
             imageUrl:
               'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770545778/9e6556f7-4d8d-458d-9cee-fc75311e590f.png',
-            xMin: 0.7244,
-            xMax: 0.742,
-            yMin: 0.2687,
-            yMax: 0.295,
+            xMin: 0.7027,
+            xMax: 0.7289,
+            yMin: 0.265,
+            yMax: 0.2962,
           },
           {
             name: 'Big Woman',
