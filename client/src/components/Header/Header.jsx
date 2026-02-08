@@ -1,8 +1,5 @@
 import { Link } from 'react-router';
 import styles from './Header.module.scss';
-import { Button } from '@/components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoon } from '@fortawesome/free-regular-svg-icons';
 
 const Header = () => {
   return (
@@ -18,11 +15,6 @@ const Header = () => {
         </ul>
       </nav>
       <p className={styles.timeClock}>Time Elapsed: 3:99s</p>
-      <div className={styles.actions}>
-        <Button variant="outline">
-          <FontAwesomeIcon icon={faMoon} />
-        </Button>
-      </div>
     </header>
   );
 };
