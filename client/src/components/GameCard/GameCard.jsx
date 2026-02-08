@@ -10,7 +10,7 @@ const GameCard = ({ imageUrl, title, slug }) => {
       </figure>
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
-        <Link to={`/game/${slug}`} className={styles.link}>
+        <Link to={`/games/${slug}`} className={styles.link}>
           Play Now
         </Link>
       </div>

@@ -8,7 +8,7 @@ const routes = [
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'game/:slug', element: <GamePage /> },
+      { path: 'games/:slug', element: <GamePage /> },
       { path: 'leaderboard', element: <LeaderboardPage /> },
     ],
   },
