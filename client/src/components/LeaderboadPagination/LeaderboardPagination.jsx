@@ -14,7 +14,7 @@ const LeaderboardPagination = ({ totalPages, currentPage, setCurrentPage }) => {
         <li>
           <Button
             variant="outline"
-            disabled={currentPage === 1}
+            disabled={Number(currentPage) === 1}
             onClick={() => setCurrentPage((prev) => prev - 1)}
           >
             Previous
@@ -23,7 +23,7 @@ const LeaderboardPagination = ({ totalPages, currentPage, setCurrentPage }) => {
         <li>
           <Button
             variant="outline"
-            disabled={currentPage === totalPages}
+            disabled={Number(currentPage) === Number(totalPages)}
             onClick={() => setCurrentPage((prev) => prev + 1)}
           >
             Next
