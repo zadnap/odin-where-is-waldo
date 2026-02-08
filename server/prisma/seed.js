@@ -4,7 +4,7 @@ async function main() {
   console.log('Seeding...');
   const mapsData = [
     {
-      title: 'Dragon Charmers Island',
+      title: `Dragon Charmer's Island`,
       slug: 'dragon-charmer-island',
       imageUrl:
         'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770274454/dragon-charmers-island_ynw3rt.jpg',
@@ -160,8 +160,8 @@ async function main() {
       },
     },
     {
-      title: `Where's Waldo`,
-      slug: `where-is-waldo`,
+      title: `Original Where's Waldo`,
+      slug: `original-where-is-waldo`,
       imageUrl:
         'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770274449/original_dldpq6.jpg',
       width: 2560,
