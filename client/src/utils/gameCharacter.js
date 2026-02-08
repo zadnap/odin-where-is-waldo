@@ -2,7 +2,7 @@ const getRemainingCharacters = (game) => {
   if (!game?.map?.characters) return [];
 
   const foundCharacterIds = new Set(
-    (game.foundCharacters ?? []).map((fc) => fc.characterId)
+    (game.foundCharacters ?? []).map((fc) => fc.id)
   );
 
   return game.map.characters.filter(
@@ -11,9 +11,7 @@ const getRemainingCharacters = (game) => {
 };
 
 const getFoundCharacterIds = (game) => {
-  const foundCharacterIds = new Set(
-    game?.foundCharacters?.map((fc) => fc.characterId)
-  );
+  const foundCharacterIds = new Set(game?.foundCharacters?.map((fc) => fc.id));
 
   return foundCharacterIds;
 };

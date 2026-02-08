@@ -4,10 +4,11 @@ import {
   Error,
   GameMap,
   Loading,
+  NotiPopup,
 } from '@/components';
 import styles from './GamePage.module.scss';
-import { useState } from 'react';
-import { useLoadGame } from '@/hooks/useGame';
+import { useEffect, useState } from 'react';
+import { useLoadGame, useMakeGuess } from '@/hooks/useGame';
 import { useParams } from 'react-router';
 import {
   getFoundCharacterIds,
@@ -16,42 +17,73 @@ import {
 
 const GamePage = () => {
   const { slug } = useParams();
-  const { game, gameLoading, gameError } = useLoadGame(slug);
+  const { game: initialGame, gameLoading, gameError } = useLoadGame(slug);
+  const [game, setGame] = useState(null);
+
+  const { makeGuess, guessResult } = useMakeGuess(game?.id);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  useEffect(() => {
+    if (initialGame) {
+      setGame(initialGame);
+    }
+  }, [initialGame]);
+
+  useEffect(() => {
+    if (!guessResult || !guessResult.correct) return;
+
+    setGame((prev) => ({
+      ...prev,
+      foundCharacters: guessResult.foundCharacters,
+    }));
+
+    if (guessResult.finished) {
+      setIsOpenModal(true);
+    }
+  }, [guessResult]);
+
+  if (gameLoading) return <Loading message="Loading game" />;
+  if (gameError) return <Error message="Fail to load game" />;
+  if (!game) return null;
+
   const remainingCharacters = getRemainingCharacters(game);
   const foundCharacterIds = getFoundCharacterIds(game);
-  const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <>
       <main className={styles.gamePage}>
-        {gameLoading && <Loading message="Loading game" />}
-        {!gameLoading && gameError && <Error message="Fail to load game" />}
-        {!gameLoading && !gameError && (
-          <>
-            <section className={styles.pageSection}>
-              <h2 className={styles.title}>Characters to find</h2>
-              <ul className={styles.characterList}>
-                {game.map.characters.map((char) => (
-                  <li key={char.id}>
-                    <CharacterCard
-                      imageUrl={char.imageUrl}
-                      name={char.name}
-                      isFound={foundCharacterIds.has(char.id)}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </section>
-            <section className={styles.pageSection}>
-              <GameMap
-                remainingCharacters={remainingCharacters}
-                imageUrl={game.map.imageUrl}
-                alt={`${game.map.title}'s map`}
-              />
-            </section>
-          </>
-        )}
+        <section className={styles.pageSection}>
+          <h2 className={styles.title}>Characters to find</h2>
+          <ul className={styles.characterList}>
+            {game.map.characters.map((char) => (
+              <li key={char.id}>
+                <CharacterCard
+                  imageUrl={char.imageUrl}
+                  name={char.name}
+                  isFound={foundCharacterIds.has(char.id)}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className={styles.pageSection}>
+          <GameMap
+            makeGuess={makeGuess}
+            remainingCharacters={remainingCharacters}
+            imageUrl={game.map.imageUrl}
+            alt={`${game.map.title}'s map`}
+          />
+        </section>
       </main>
+
+      {guessResult && (
+        <NotiPopup
+          message={guessResult.correct ? 'Correct guess!' : 'Try again!'}
+          variant={guessResult.correct ? 'success' : 'warning'}
+        />
+      )}
+
       {isOpenModal && <EnterNameModal onClose={() => setIsOpenModal(false)} />}
     </>
   );

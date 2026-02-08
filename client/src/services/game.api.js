@@ -28,14 +28,14 @@ const createGameApi = async (mapSlug) => {
 };
 
 const makeGuessApi = async ({ gameId, x, y, characterId }) => {
-  const res = await fetch(`${API_URL}/${gameId}/guess`, {
+  const res = await fetch(`${API_URL}/games/${gameId}/guess`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: { x, y, characterId },
+    body: JSON.stringify({ x, y, characterId }),
   });
-  const result = res.json();
+  const result = await res.json();
 
   if (!res.ok) {
     throw result;

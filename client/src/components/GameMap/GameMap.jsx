@@ -2,10 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './GameMap.module.scss';
 import TargetBox from '../TargetBox/TargetBox';
 
-const GameMap = ({ remainingCharacters = [], imageUrl, alt }) => {
+const GameMap = ({ makeGuess, remainingCharacters = [], imageUrl, alt }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [positionPercent, setPositionPercent] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
+
+  const handleSelect = async (payload) => {
+    setIsOpen(false);
+    await makeGuess(payload);
+  };
 
   const handleImageClick = (e) => {
     const rect = e.target.getBoundingClientRect();
@@ -14,6 +20,7 @@ const GameMap = ({ remainingCharacters = [], imageUrl, alt }) => {
     const y = e.clientY - rect.top;
 
     setPosition({ x, y });
+    setPositionPercent({ x: x / rect.width, y: y / rect.height });
     setIsOpen(true);
   };
 
@@ -40,7 +47,12 @@ const GameMap = ({ remainingCharacters = [], imageUrl, alt }) => {
         className={styles.gameMap}
       />
       {isOpen && (
-        <TargetBox position={position} characters={remainingCharacters} />
+        <TargetBox
+          positionPercent={positionPercent}
+          position={position}
+          handleSelect={handleSelect}
+          characters={remainingCharacters}
+        />
       )}
     </div>
   );

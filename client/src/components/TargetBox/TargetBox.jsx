@@ -1,7 +1,12 @@
 import { Button } from '..';
 import styles from './TargetBox.module.scss';
 
-const TargetBox = ({ handleSelect, position, characters = [] }) => {
+const TargetBox = ({
+  handleSelect,
+  positionPercent,
+  position,
+  characters = [],
+}) => {
   return (
     <div
       className={styles.targetBox}
@@ -16,7 +21,13 @@ const TargetBox = ({ handleSelect, position, characters = [] }) => {
           <Button
             key={c.id}
             className={styles.option}
-            onClick={() => handleSelect(c)}
+            onClick={() =>
+              handleSelect({
+                x: positionPercent.x,
+                y: positionPercent.y,
+                characterId: c.id,
+              })
+            }
           >
             <img src={c.imageUrl} alt={c.name} />
             <span>{c.name}</span>
