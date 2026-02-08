@@ -6,8 +6,8 @@ import {
 } from '@/components';
 import { useState } from 'react';
 import styles from './LeaderboardPage.module.scss';
-import { useScores } from '@/hook/useScores';
-import { useMaps } from '@/hook/useMaps';
+import { useScores } from '@/hooks/useScores';
+import { useMaps } from '@/hooks/useMaps';
 
 const LeaderboardPage = () => {
   const { maps, mapsLoading, mapsError } = useMaps();

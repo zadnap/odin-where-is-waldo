@@ -1,7 +1,7 @@
 import { Error, GameCard, Loading } from '@/components';
 import styles from './HomePage.module.scss';
 import logo from '@/assets/images/logo.png';
-import { useMaps } from '@/hook/useMaps';
+import { useMaps } from '@/hooks/useMaps';
 
 const HomePage = () => {
   const { maps, mapsLoading, mapsError } = useMaps();
