@@ -28,6 +28,7 @@ const GamePage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const isPlaying = !guessResult?.finished;
   const { elapsed } = useElapsed(game?.startedAt, isPlaying);
+  const [notiKey, setNotiKey] = useState(0);
 
   useEffect(() => {
     if (initialGame) {
@@ -46,6 +47,11 @@ const GamePage = () => {
     if (!isPlaying) {
       setIsOpenModal(true);
     }
+  }, [guessResult]);
+
+  useEffect(() => {
+    if (!guessResult) return;
+    setNotiKey((k) => k + 1);
   }, [guessResult]);
 
   if (gameLoading) return <Loading message="Loading game" />;
@@ -90,6 +96,7 @@ const GamePage = () => {
 
       {guessResult && (
         <NotiPopup
+          key={notiKey}
           message={guessResult.correct ? 'Correct guess!' : 'Try again!'}
           variant={guessResult.correct ? 'success' : 'warning'}
         />
