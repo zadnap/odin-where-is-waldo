@@ -15,7 +15,7 @@ async function main() {
           {
             name: 'Loaf Cat',
             imageUrl:
-              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770279462/fb047497-83a8-476e-b17c-4512a47fb8b8.png',
+              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770547263/c35244f7-325c-4333-b91e-72567aa806ea.png',
             xMin: 0.6802,
             xMax: 0.8277,
             yMin: 0.7277,
@@ -141,7 +141,7 @@ async function main() {
           {
             name: 'Mikasa',
             imageUrl:
-              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770280963/34f73620-766d-4a83-af2e-c23bf101170c.png',
+              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770547288/19f7f96d-f499-48fe-aa94-49d9ed33725a.png',
             xMin: 0.0879,
             xMax: 0.1243,
             yMin: 0.88,
@@ -171,7 +171,7 @@ async function main() {
           {
             name: 'Sniffing Dog',
             imageUrl:
-              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770281183/aa1fa990-868c-4511-8ab4-dee8c7a89356.png',
+              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770545778/9e6556f7-4d8d-458d-9cee-fc75311e590f.png',
             xMin: 0.7244,
             xMax: 0.742,
             yMin: 0.2687,
@@ -180,7 +180,7 @@ async function main() {
           {
             name: 'Big Woman',
             imageUrl:
-              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770281200/a9c04bd3-65c5-4987-852d-162a6110582d.png',
+              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770545825/eee12608-50ca-4e21-b49e-dd83fc5eb8db.png',
             xMin: 0.7445,
             xMax: 0.7804,
             yMin: 0.7412,
@@ -189,7 +189,7 @@ async function main() {
           {
             name: 'Chill Guy',
             imageUrl:
-              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770281381/bcee783a-179d-4461-846a-ff26dff2c1fa.png',
+              'https://res.cloudinary.com/dowyp6xf3/image/upload/v1770547338/4aaabce6-ede3-4aab-9dc4-b35e40bf6b5e.png',
             xMin: 0.3644,
             xMax: 0.398,
             yMin: 0.3918,
