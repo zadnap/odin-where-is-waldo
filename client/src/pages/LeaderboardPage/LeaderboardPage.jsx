@@ -1,11 +1,22 @@
-import { LeaderboardFilter, Pagination, Table } from '@/components';
+import {
+  LeaderboardFilter,
+  LeaderboardPagination,
+  LeaderboardTable,
+  Loading,
+} from '@/components';
 import { useState } from 'react';
 import styles from './LeaderboardPage.module.scss';
+import { useScores } from '@/hook/useScores';
+import { useMaps } from '@/hook/useMaps';
 
 const LeaderboardPage = () => {
-  const options = [];
+  const { maps, mapsLoading, mapsError } = useMaps();
+  const [selectedOpt, setSelectedOpt] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedOpt, setSelectedOpt] = useState('all');
+  const { scores, scoresMeta, scoresLoading, scoresError } = useScores({
+    page: currentPage,
+    mapSlug: selectedOpt,
+  });
 
   return (
     <main className={styles.leaderboardPage}>
@@ -17,17 +28,27 @@ const LeaderboardPage = () => {
           Leaderboard
         </h2>
         <div className={styles.leaderboard}>
-          <LeaderboardFilter
-            options={options}
-            selectedOpt={selectedOpt}
-            setSelectedOpt={setSelectedOpt}
-          />
-          <Table />
-          <Pagination
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            totalPages={10}
-          />
+          {!mapsLoading && !mapsError && (
+            <LeaderboardFilter
+              options={maps}
+              selectedOpt={selectedOpt}
+              setSelectedOpt={setSelectedOpt}
+            />
+          )}
+
+          {scoresLoading && <Loading message="Loading leaderboard" />}
+          {!scoresLoading && scoresError && (
+            <Error message="Fail to load leaderboard" />
+          )}
+          {!scoresLoading && !scoresError && <LeaderboardTable rows={scores} />}
+
+          {scoresMeta?.totalPages > 0 && (
+            <LeaderboardPagination
+              currentPage={scoresMeta.page}
+              setCurrentPage={setCurrentPage}
+              totalPages={scoresMeta.totalPages}
+            />
+          )}
         </div>
       </section>
     </main>
