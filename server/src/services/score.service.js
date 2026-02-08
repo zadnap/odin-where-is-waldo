@@ -46,7 +46,7 @@ const getScores = async ({ mapSlug, page, limit }) => {
   };
 };
 
-const createScore = async ({ gameId, playerName, timeMs }) => {
+const createScore = async ({ gameId, playerName }) => {
   if (!gameId) {
     throw new AppError('GameId is required', 400);
   }
@@ -55,45 +55,33 @@ const createScore = async ({ gameId, playerName, timeMs }) => {
     throw new AppError('Player name is required', 400);
   }
 
-  if (typeof timeMs !== 'number' || timeMs < 0) {
-    throw new AppError('Invalid time ms', 400);
-  }
-
   const game = await prisma.game.findUnique({
     where: { id: gameId },
     include: { score: true },
   });
+  const timeMs = game.finishedAt - game.startedAt;
 
   if (!game) {
     throw new AppError('Game not found', 404);
   }
 
-  if (game.finishedAt) {
-    throw new AppError('Game already finished', 400);
+  if (!game.finishedAt) {
+    throw new AppError('Game is not finished yet', 400);
   }
 
   if (game.score) {
     throw new AppError('Score already exists for this game', 400);
   }
 
-  return prisma.$transaction(async (tx) => {
-    const score = await tx.score.create({
-      data: {
-        gameId,
-        playerName: playerName.trim(),
-        timeMs,
-      },
-    });
-
-    await tx.game.update({
-      where: { id: gameId },
-      data: {
-        finishedAt: new Date(),
-      },
-    });
-
-    return score;
+  const score = await prisma.score.create({
+    data: {
+      gameId,
+      playerName: playerName.trim(),
+      timeMs,
+    },
   });
+
+  return score;
 };
 
 export default { getScores, createScore };

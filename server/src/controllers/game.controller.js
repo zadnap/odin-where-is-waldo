@@ -22,10 +22,15 @@ const createGame = async (req, res) => {
 const makeGuess = async (req, res) => {
   const gameId = req.params.gameId;
   const { x, y, characterId } = req.body;
-  const correct = await gameService.makeGuess({ gameId, x, y, characterId });
+  const guessResult = await gameService.makeGuess({
+    gameId,
+    x,
+    y,
+    characterId,
+  });
 
   return successResponse(res, {
-    data: { correct },
+    data: guessResult,
   });
 };
 

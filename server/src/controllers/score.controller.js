@@ -11,9 +11,11 @@ const getScores = async (req, res) => {
 };
 
 const createScore = async (req, res) => {
-  await scoreService.createScore(req.body);
+  const score = await scoreService.createScore(req.body);
 
-  return successResponse(res);
+  return successResponse(res, {
+    data: score,
+  });
 };
 
 export { getScores, createScore };

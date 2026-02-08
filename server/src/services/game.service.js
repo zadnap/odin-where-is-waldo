@@ -45,6 +45,7 @@ const createGame = async (mapSlug) => {
   const newGame = await prisma.game.create({
     data: { mapId: map.id },
     include: {
+      foundCharacters: true,
       map: {
         include: {
           characters: {
@@ -94,17 +95,51 @@ const makeGuess = async ({ gameId, x, y, characterId }) => {
   if (!character) {
     throw new AppError('Character not found', 404);
   }
-
   if (character.mapId !== game.mapId) {
     throw new AppError('Character does not belong to this map', 400);
   }
 
-  return (
-    x >= character.xMin &&
-    x <= character.xMax &&
-    y >= character.yMin &&
-    y <= character.yMax
-  );
+  const xMin = Number(character.xMin);
+  const xMax = Number(character.xMax);
+  const yMin = Number(character.yMin);
+  const yMax = Number(character.yMax);
+  const isCorrect = x >= xMin && x <= xMax && y >= yMin && y <= yMax;
+
+  if (!isCorrect) {
+    return { correct: false };
+  }
+
+  try {
+    const foundCharacter = await prisma.foundCharacter.create({
+      data: { gameId, characterId },
+    });
+
+    const [foundCount, totalCharacters] = await Promise.all([
+      prisma.foundCharacter.count({ where: { gameId } }),
+      prisma.character.count({ where: { mapId: game.mapId } }),
+    ]);
+
+    let finished = false;
+
+    if (foundCount === totalCharacters) {
+      await prisma.game.update({
+        where: { id: gameId },
+        data: { finishedAt: new Date() },
+      });
+      finished = true;
+    }
+
+    return {
+      correct: true,
+      foundCharacter,
+      finished,
+    };
+  } catch (err) {
+    if (err.code === 'P2002') {
+      throw new AppError('This character is already found', 409);
+    }
+    throw err;
+  }
 };
 
 export default { getGame, createGame, makeGuess };
