@@ -13,4 +13,21 @@ const getScoresApi = async ({ mapSlug, page = 1, limit = 10 } = {}) => {
   return { data: result.data, meta: result.meta };
 };
 
-export { getScoresApi };
+const createScoreApi = async ({ gameId, playerName }) => {
+  const res = await fetch(`${API_URL}/scores`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ gameId, playerName }),
+  });
+  const result = await res.json();
+
+  if (!res.ok) {
+    throw result;
+  }
+
+  return result.data;
+};
+
+export { getScoresApi, createScoreApi };

@@ -9,15 +9,18 @@ import {
 import styles from './GamePage.module.scss';
 import { useEffect, useState } from 'react';
 import { useLoadGame, useMakeGuess } from '@/hooks/useGame';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import {
   getFoundCharacterIds,
   getRemainingCharacters,
 } from '@/utils/gameCharacter';
+import { useCreateScore } from '@/hooks/useScores';
 
 const GamePage = () => {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const { game: initialGame, gameLoading, gameError } = useLoadGame(slug);
+  const { scoreData, setScoreData } = useCreateScore();
   const [game, setGame] = useState(null);
 
   const { makeGuess, guessResult } = useMakeGuess(game?.id);
@@ -48,6 +51,11 @@ const GamePage = () => {
 
   const remainingCharacters = getRemainingCharacters(game);
   const foundCharacterIds = getFoundCharacterIds(game);
+
+  const onSubmit = (name) => {
+    setScoreData({ gameId: game.id, playerName: name });
+    navigate('/');
+  };
 
   return (
     <>
@@ -84,7 +92,9 @@ const GamePage = () => {
         />
       )}
 
-      {isOpenModal && <EnterNameModal onClose={() => setIsOpenModal(false)} />}
+      {isOpenModal && (
+        <EnterNameModal onSubmit={onSubmit} onClose={() => navigate('/')} />
+      )}
     </>
   );
 };

@@ -1,7 +1,7 @@
-import { getScoresApi } from '@/services/score.api';
+import { createScoreApi, getScoresApi } from '@/services/score.api';
 import { useState, useEffect } from 'react';
 
-const useScores = ({ mapSlug, page, limit }) => {
+const useLoadScores = ({ mapSlug, page, limit }) => {
   const [scores, setScores] = useState([]);
   const [scoresMeta, setScoresMeta] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,4 +35,23 @@ const useScores = ({ mapSlug, page, limit }) => {
   };
 };
 
-export { useScores };
+const useCreateScore = () => {
+  const [scoreData, setScoreData] = useState(null);
+
+  useEffect(() => {
+    const createScore = async () => {
+      await createScoreApi({
+        gameId: scoreData.gameId,
+        playerName: scoreData.playerName,
+      });
+    };
+
+    if (scoreData) {
+      createScore();
+    }
+  }, [scoreData]);
+
+  return { scoreData, setScoreData };
+};
+
+export { useLoadScores, useCreateScore };

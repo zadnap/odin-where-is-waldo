@@ -6,14 +6,14 @@ import {
 } from '@/components';
 import { useState } from 'react';
 import styles from './LeaderboardPage.module.scss';
-import { useScores } from '@/hooks/useScores';
+import { useLoadScores } from '@/hooks/useScores';
 import { useMaps } from '@/hooks/useMaps';
 
 const LeaderboardPage = () => {
   const { maps, mapsLoading, mapsError } = useMaps();
   const [selectedOpt, setSelectedOpt] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const { scores, scoresMeta, scoresLoading, scoresError } = useScores({
+  const { scores, scoresMeta, scoresLoading, scoresError } = useLoadScores({
     page: currentPage,
     mapSlug: selectedOpt,
   });

@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import { Button } from '..';
 import styles from './EnterNameModal.module.scss';
 
-const EnterNameModal = ({ handleSubmit, onClose }) => {
+const EnterNameModal = ({ onSubmit, onClose }) => {
+  const [name, setName] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(name);
+  };
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div
@@ -22,15 +30,16 @@ const EnterNameModal = ({ handleSubmit, onClose }) => {
             type="text"
             name="playerName"
             placeholder="Enter Your Name"
-            required
-            maxLength={20}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={255}
             autoFocus
           />
           <footer className={styles.actions}>
             <Button onClick={onClose} variant="outline">
               Cancel
             </Button>
-            <Button>Save</Button>
+            <Button type="submit">Save</Button>
           </footer>
         </form>
       </div>
