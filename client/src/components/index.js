@@ -11,6 +11,7 @@ import TargetBox from './TargetBox/TargetBox';
 import GameMap from './GameMap/GameMap';
 import EnterNameModal from './EnterNameModal/EnterNameModal';
 import Error from './Error/Error';
+import NotiPopup from './NotiPopup/NotiPopup';
 
 export {
   Button,
@@ -26,4 +27,5 @@ export {
   GameMap,
   EnterNameModal,
   Error,
+  NotiPopup,
 };
