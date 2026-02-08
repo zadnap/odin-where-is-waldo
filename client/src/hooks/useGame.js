@@ -62,4 +62,28 @@ const useMakeGuess = (gameId) => {
   };
 };
 
-export { useLoadGame, useMakeGuess };
+const useElapsed = (startedAt, isRunning = true) => {
+  const [elapsed, setElapsed] = useState(0);
+
+  useEffect(() => {
+    if (!startedAt || !isRunning) return;
+
+    const start =
+      typeof startedAt === 'number' ? startedAt : new Date(startedAt).getTime();
+
+    let rafId;
+
+    const tick = () => {
+      setElapsed(Date.now() - start);
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+
+    return () => cancelAnimationFrame(rafId);
+  }, [startedAt, isRunning]);
+
+  return { elapsed };
+};
+
+export { useLoadGame, useMakeGuess, useElapsed };

@@ -51,7 +51,7 @@ const useCreateScore = () => {
     }
   }, [scoreData]);
 
-  return { scoreData, setScoreData };
+  return { setScoreData };
 };
 
 export { useLoadScores, useCreateScore };

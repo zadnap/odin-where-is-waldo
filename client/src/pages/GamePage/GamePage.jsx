@@ -5,26 +5,29 @@ import {
   GameMap,
   Loading,
   NotiPopup,
+  TimeElapsed,
 } from '@/components';
 import styles from './GamePage.module.scss';
 import { useEffect, useState } from 'react';
-import { useLoadGame, useMakeGuess } from '@/hooks/useGame';
+import { useElapsed, useLoadGame, useMakeGuess } from '@/hooks/useGame';
 import { useNavigate, useParams } from 'react-router';
 import {
   getFoundCharacterIds,
   getRemainingCharacters,
 } from '@/utils/gameCharacter';
 import { useCreateScore } from '@/hooks/useScores';
+import { formatTime } from '@/utils/dateTime';
 
 const GamePage = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
   const { game: initialGame, gameLoading, gameError } = useLoadGame(slug);
-  const { scoreData, setScoreData } = useCreateScore();
+  const { setScoreData } = useCreateScore();
   const [game, setGame] = useState(null);
-
   const { makeGuess, guessResult } = useMakeGuess(game?.id);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const isPlaying = !guessResult?.finished;
+  const { elapsed } = useElapsed(game?.startedAt, isPlaying);
 
   useEffect(() => {
     if (initialGame) {
@@ -40,7 +43,7 @@ const GamePage = () => {
       foundCharacters: guessResult.foundCharacters,
     }));
 
-    if (guessResult.finished) {
+    if (!isPlaying) {
       setIsOpenModal(true);
     }
   }, [guessResult]);
@@ -91,6 +94,8 @@ const GamePage = () => {
           variant={guessResult.correct ? 'success' : 'warning'}
         />
       )}
+
+      <TimeElapsed time={formatTime(elapsed)} />
 
       {isOpenModal && (
         <EnterNameModal onSubmit={onSubmit} onClose={() => navigate('/')} />
