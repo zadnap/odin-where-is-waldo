@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './GameMap.module.scss';
 import TargetBox from '../TargetBox/TargetBox';
 
-const GameMap = ({ imageUrl, alt }) => {
+const GameMap = ({ remainingCharacters = [], imageUrl, alt }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef(null);
@@ -40,24 +40,7 @@ const GameMap = ({ imageUrl, alt }) => {
         className={styles.gameMap}
       />
       {isOpen && (
-        <TargetBox
-          position={position}
-          characters={[
-            {
-              name: 'Bill Cipher',
-              img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOQ2Hr2O5Gd_tR4hfPSSGGibx3Qoo7QgFHmQ&s',
-            },
-            {
-              name: 'Dipper',
-              img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPbiUEFu79qkTQeQyMeOUMfSL0cBzaOC1_tg&s',
-            },
-            {
-              id: 'mabel',
-              name: 'Mabel',
-              img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvAls_UxAA8fIZByC67xSrIpEBgzyzL2r8ww&s',
-            },
-          ]}
-        />
+        <TargetBox position={position} characters={remainingCharacters} />
       )}
     </div>
   );

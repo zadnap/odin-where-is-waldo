@@ -18,7 +18,7 @@ const TargetBox = ({ handleSelect, position, characters = [] }) => {
             className={styles.option}
             onClick={() => handleSelect(c)}
           >
-            <img src={c.img} alt={c.name} />
+            <img src={c.imageUrl} alt={c.name} />
             <span>{c.name}</span>
           </Button>
         ))}
