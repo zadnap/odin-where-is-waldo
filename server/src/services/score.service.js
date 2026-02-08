@@ -5,20 +5,15 @@ import { getPagination } from '../utils/pagination.js';
 const getScores = async ({ mapSlug, page, limit }) => {
   const pagination = getPagination(page, limit);
 
-  const where = {};
-
-  if (mapSlug) {
-    const map = await prisma.map.findUnique({
-      where: { slug: mapSlug },
-      select: { id: true },
-    });
-
-    if (!map) {
-      throw new AppError('Map not found', 404);
-    }
-
-    where.game = { mapId: map.id };
-  }
+  const where = mapSlug
+    ? {
+        game: {
+          map: {
+            slug: mapSlug,
+          },
+        },
+      }
+    : {};
 
   const [scores, total] = await Promise.all([
     prisma.score.findMany({
@@ -26,13 +21,33 @@ const getScores = async ({ mapSlug, page, limit }) => {
       skip: pagination.skip,
       orderBy: { timeMs: 'asc' },
       where,
+      include: {
+        game: {
+          include: {
+            map: {
+              select: {
+                title: true,
+                slug: true,
+              },
+            },
+          },
+        },
+      },
     }),
     prisma.score.count({ where }),
   ]);
 
   const rankedScores = scores.map((score, index) => ({
-    ...score,
+    id: score.id,
+    playerName: score.playerName,
+    timeMs: score.timeMs,
+    createdAt: score.createdAt,
     rank: pagination.skip + index + 1,
+
+    map: {
+      title: score.game.map.title,
+      slug: score.game.map.slug,
+    },
   }));
 
   return {

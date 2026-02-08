@@ -1,3 +1,4 @@
+import { formatTime } from '@/utils/dateTime';
 import styles from './LeaderboardTable.module.scss';
 
 const LeaderboardTable = ({ rows = [] }) => {
@@ -21,10 +22,10 @@ const LeaderboardTable = ({ rows = [] }) => {
         ) : (
           rows.map((row) => (
             <tr key={row.id}>
-              <th scope="row">{rows.rank}</th>
-              <td>{rows.playerName}</td>
-              <td>{rows.mapName}</td>
-              <td>{rows.timeMs}</td>
+              <th scope="row">{row.rank}</th>
+              <td>{row.playerName}</td>
+              <td>{row.map.title}</td>
+              <td>{formatTime(row.timeMs)}</td>
             </tr>
           ))
         )}
