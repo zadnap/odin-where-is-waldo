@@ -34,6 +34,8 @@ model Character {
   mapId String @map("map_id")
   map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
 
+  foundInGames FoundCharacter[]
+
   @@unique([mapId, name])
   @@map("characters")
 }
@@ -46,7 +48,8 @@ model Game {
   mapId String @map("map_id")
   map   Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
 
-  score Score?
+  score           Score?
+  foundCharacters FoundCharacter[]
 
   @@map("games")
 }
@@ -62,4 +65,18 @@ model Score {
 
   @@index([timeMs])
   @@map("scores")
+}
+
+model FoundCharacter {
+  id      String   @id @default(uuid()) @map("id")
+  foundAt DateTime @default(now()) @map("found_at")
+
+  gameId      String @map("game_id")
+  characterId String @map("character_id")
+
+  game      Game      @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@unique([gameId, characterId])
+  @@map("found_characters")
 }
